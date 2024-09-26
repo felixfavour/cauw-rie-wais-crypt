@@ -11,8 +11,8 @@
   --color-primary: #dde2e8;
   --color-text: #000000;
   --border-radius-base: 0.6rem;
-  --transition-base: 0.3s ease-in-out;
-  --desktop-max-width: 1000px;
+  --transition-base: all 0.4s cubic-bezier(0.7, 0, 0.2, 1) 0ms;
+  --desktop-max-width: 1200px;
 }
 
 * {
