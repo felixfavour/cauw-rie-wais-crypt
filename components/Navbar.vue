@@ -1,21 +1,34 @@
 <template>
   <section class="navbar section">
     <div class="inner">
-      <form>
+      <!-- HOMEPAGE TYPE -->
+      <form v-if="route.path === '/'" @submit.prevent>
         <div class="form-group">
           <IconSearch class="icon" />
           <input
             type="text"
             class="form-control"
             placeholder="Search for photo"
+            @keyup.enter="
+              $router.push({
+                path: '/search',
+                query: { q: $event.target.value },
+              })
+            "
           />
         </div>
       </form>
+      <!-- SEARCH PAGE TYPE -->
+      <h1 v-else>
+        Search Results for <span>“{{ route.query.q }}”</span>
+      </h1>
     </div>
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const route = useRoute()
+</script>
 
 <style scoped>
 .navbar {
@@ -57,6 +70,14 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 .navbar input::placeholder {
-  color: #2b2b2b;
+  color: var(--color-text);
+}
+h1 {
+  font-weight: 600;
+  font-size: 3rem;
+  color: var(--color-text);
+}
+h1 > span {
+  color: var(--color-text-light);
 }
 </style>

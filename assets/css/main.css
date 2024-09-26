@@ -9,9 +9,10 @@
 
 :root {
   --color-primary: #dde2e8;
-  --color-text: #000000;
+  --color-text: #252832;
+  --color-text-light: #6f717b;
   --border-radius-base: 0.6rem;
-  --transition-base: all 0.4s cubic-bezier(0.7, 0, 0.2, 1) 0ms;
+  --transition-base: all 0.3s cubic-bezier(0.7, 0, 0.2, 1) 0ms;
   --desktop-max-width: 1200px;
 }
 
@@ -22,4 +23,17 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+@keyframes skeleton-loading {
+  to {
+    background-position: left;
+  }
+}
+
+.skeleton {
+  cursor: progress;
+  background: linear-gradient(90deg, #f7f7f7 35%, #eaeaea, #f7f7f7 65%) right / 300% 100%;
+  animation: skeleton-loading 1.2s linear infinite;
+  -webkit-animation: skeleton-loading 1.2s linear infinite;
 }

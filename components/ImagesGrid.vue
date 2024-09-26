@@ -1,6 +1,15 @@
 <template>
   <div class="images-grid section">
     <div class="images-grid__inner">
+      <!-- PLACEHOLDER IMAGES -->
+      <div class="images-grid__images">
+        <div v-for="i in 21" :key="i" class="images-grid__placeholder skeleton">
+          <div class="images-grid__placeholder__box"></div>
+          <div class="images-grid__placeholder__box"></div>
+        </div>
+      </div>
+
+      <!-- ACTUAL IMAGES -->
       <div class="images-grid__images">
         <div
           v-for="(image, index) in images"
@@ -21,22 +30,7 @@
 </template>
 
 <script setup lang="ts">
-const images = ref([
-  "https://images.unsplash.com/photo-1709884735626-63e92727d8b6?q=80&w=1828&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1709884732294-ac35fa831eb4?q=80&w=1863&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1661889099855-b44dc39e88c9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1709917241494-48fdf74f2640?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGZyZWUlMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D",
-  "https://plus.unsplash.com/premium_photo-1661777965336-e4e80856b9fe?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1706694442016-bd539e1d102b?q=80&w=1977&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1709884735626-63e92727d8b6?q=80&w=1828&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1709884732294-ac35fa831eb4?q=80&w=1863&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1661889099855-b44dc39e88c9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1709917241494-48fdf74f2640?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGZyZWUlMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D",
-  "https://plus.unsplash.com/premium_photo-1661777965336-e4e80856b9fe?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1706694442016-bd539e1d102b?q=80&w=1977&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-])
+const images = ref([])
 </script>
 
 <style lang="scss" scoped>
@@ -62,6 +56,7 @@ const images = ref([
     position: relative;
     color: #ffffff;
     transition: var(--transition-base);
+    cursor: zoom-in;
 
     &__overlay {
       position: absolute;
@@ -105,6 +100,35 @@ const images = ref([
     &:hover {
       transform: scale(1.03);
     }
+  }
+
+  &__placeholder {
+    width: 250px;
+    border-radius: var(--border-radius-base);
+    padding: 2rem;
+    height: 270px;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    &__box {
+      width: 200px;
+      height: 20px;
+      background: #cbcbcb;
+      margin-bottom: 0.8rem;
+      opacity: 0.5;
+    }
+
+    &__box:nth-child(2) {
+      width: 130px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__placeholder:nth-of-type(even) {
+    height: 410px;
   }
 }
 </style>
