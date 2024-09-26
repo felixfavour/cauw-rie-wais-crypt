@@ -1,0 +1,25 @@
+/* FONT IMPORT */
+@font-face {
+  font-family: "Rency";
+  src: url("../fonts/rency.woff2");
+  src: url("../fonts/rency.woff2") format("embedded-opentype"),
+    url("../fonts/rency.woff2") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --color-primary: #dde2e8;
+  --color-text: #000000;
+  --border-radius-base: 0.6rem;
+  --transition-base: 0.3s ease-in-out;
+  --desktop-max-width: 1000px;
+}
+
+* {
+  font-family: "Rency", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
