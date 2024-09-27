@@ -35,7 +35,6 @@ const imageCtn = ref<HTMLElement>()
 onMounted(() => {
   imageCtn.value.appendChild(props.imageEl)
 })
-console.log(props.imageEl)
 </script>
 
 <style scoped>
@@ -69,8 +68,6 @@ console.log(props.imageEl)
   background: var(--color-text-light);
 }
 .image-modal {
-  /* width: 50%;
-  max-width: var(--desktop-max-width); */
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -102,5 +99,45 @@ console.log(props.imageEl)
   font-size: 0.875rem;
   opacity: 0.8;
   text-align: left;
+}
+
+@media screen and (max-width: 1024px) {
+  .image-modal {
+    width: 85%;
+  }
+  .image-modal-ctn__close {
+    right: 1rem;
+    top: 1rem;
+    background: var(--color-text-light);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .image-modal {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  .image-modal__image {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    height: auto;
+  }
+  .image-modal__texts {
+    padding: 0.5rem 1rem;
+    padding-bottom: 2rem;
+  }
+  .image-modal__overlay__name {
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .image-modal__overlay__location {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    text-align: left;
+  }
 }
 </style>

@@ -80,4 +80,34 @@ h1 {
 h1 > span {
   color: var(--color-text-light);
 }
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    min-height: 250px;
+  }
+  .navbar input {
+    height: 65px;
+    font-size: 1.125rem;
+    /* padding: 0 2rem; */
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar .icon {
+    position: absolute;
+    left: 2rem;
+  }
+  .navbar {
+    min-height: 250px;
+  }
+  .navbar input {
+    padding: 0 3.5rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+}
 </style>

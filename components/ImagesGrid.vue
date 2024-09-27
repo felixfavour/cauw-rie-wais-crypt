@@ -94,11 +94,11 @@ const closeImageModal = async () => {
 
   &__images {
     column-count: 3;
-    column-gap: 3rem;
+    column-gap: var(--image-grid-column-gap);
   }
 
   &__image {
-    margin-bottom: 3rem;
+    margin-bottom: var(--image-grid-column-gap);
     padding: 0;
     width: 100%;
     height: 100%;
@@ -163,7 +163,7 @@ const closeImageModal = async () => {
     border-radius: var(--border-radius-base);
     padding: 2rem;
     height: 270px;
-    margin-bottom: 3rem;
+    margin-bottom: var(--image-grid-column-gap);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -185,6 +185,52 @@ const closeImageModal = async () => {
 
   &__placeholder:nth-of-type(even) {
     height: 410px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .images-grid__inner {
+    max-width: 90%;
+  }
+  .images-grid__image {
+    &__overlay {
+      padding: 0 1.5rem;
+    }
+
+    &__overlay__name {
+      font-size: 1.125rem;
+    }
+
+    &__overlay__location {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .images-grid__images {
+    column-count: 2;
+  }
+  .images-grid__image {
+    &__overlay {
+      padding: 0 1.375rem;
+    }
+
+    &__overlay__name {
+      font-size: 1.125rem;
+      line-height: 2rem;
+    }
+
+    &__overlay__location {
+      margin-bottom: 1.375rem;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .images-grid__images {
+    column-count: 1;
   }
 }
 </style>
