@@ -45,8 +45,8 @@ console.log(props.imageEl)
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,8 +69,8 @@ console.log(props.imageEl)
   background: var(--color-text-light);
 }
 .image-modal {
-  width: 75%;
-  max-width: var(--desktop-max-width);
+  /* width: 50%;
+  max-width: var(--desktop-max-width); */
   background: #ffffff;
   display: flex;
   flex-direction: column;
