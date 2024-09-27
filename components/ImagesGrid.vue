@@ -199,6 +199,21 @@ const closeImageModal = async () => {
   }
 }
 
+@media screen and (max-width: 1366px) {
+  .images-grid__placeholder {
+    width: 220px;
+
+    &__box {
+      width: 80%;
+      height: 15px;
+    }
+
+    &__box:nth-child(2) {
+      width: 50%;
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .images-grid__inner {
     max-width: 90%;

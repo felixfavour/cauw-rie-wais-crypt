@@ -6,6 +6,11 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+  title: `Image Catalog`,
+  description: "See multiple images in staggered grid",
+})
+
 const {
   data: images,
   pending,

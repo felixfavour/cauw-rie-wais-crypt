@@ -7,6 +7,11 @@
 <script setup lang="ts">
 const route = useRoute()
 
+useHead({
+  title: `Image Search: "${route.query.q}"`,
+  description: "Search for images on Unsplash",
+})
+
 const {
   data: images,
   pending,

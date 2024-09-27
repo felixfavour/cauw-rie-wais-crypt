@@ -2,12 +2,13 @@
   <section class="navbar section" :class="{ normal: startAnim }">
     <div class="inner">
       <!-- HOMEPAGE TYPE -->
-      <form v-if="route.path === '/'" @submit.prevent>
+      <form v-if="route.name === 'index'" @submit.prevent class="slide-up">
         <div class="form-group" :class="{ normal: startAnim }">
           <IconSearch class="icon" />
           <input
             type="text"
             class="form-control"
+            :value="route.query.q"
             placeholder="Search for photo"
             @keyup.enter="
               $router.push({
@@ -19,8 +20,11 @@
         </div>
       </form>
       <!-- SEARCH PAGE TYPE -->
-      <h1 v-else>
-        Search Results for <span>“{{ route.query.q }}”</span>
+      <h1 v-else class="slide-up">
+        Search Results for
+        <nuxt-link :to="`/?q=${route.query.q}`"
+          >“{{ route.query.q }}”</nuxt-link
+        >
       </h1>
     </div>
   </section>
@@ -59,7 +63,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   position: relative;
-  transform: scale(0.6);
+  transform: scale(0.75);
   transition: var(--transition-lg);
 }
 .navbar .form-group.normal {
@@ -95,8 +99,13 @@ h1 {
   font-size: 3rem;
   color: var(--color-text);
 }
-h1 > span {
+h1 > a {
   color: var(--color-text-light);
+  text-decoration: none;
+}
+
+h1 > a:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {
