@@ -4,7 +4,7 @@
       <button class="image-modal-ctn__close" @click="$emit('close-modal')">
         <IconClose />
       </button>
-      <div class="image-modal__image">
+      <div ref="imageCtn" class="image-modal__image">
         <img :src="image?.urls?.regular" :alt="image?.alt_description" />
       </div>
       <div class="image-modal__texts">
@@ -25,7 +25,17 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  imageEl: {
+    type: Object,
+    required: true,
+  },
 })
+const imageCtn = ref<HTMLElement>()
+
+onMounted(() => {
+  imageCtn.value.appendChild(props.imageEl)
+})
+console.log(props.imageEl)
 </script>
 
 <style scoped>
@@ -35,7 +45,7 @@ const props = defineProps({
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 999;
   display: flex;
   justify-content: center;
@@ -52,29 +62,30 @@ const props = defineProps({
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  right: -15%;
-  top: -5%;
+  right: -4rem;
+  top: -3rem;
 }
 .image-modal-ctn__close:hover {
   background: var(--color-text-light);
 }
 .image-modal {
-  max-width: 800px;
+  width: 75%;
+  max-width: var(--desktop-max-width);
   background: #ffffff;
   display: flex;
   flex-direction: column;
   position: relative;
   border-radius: var(--border-radius-base);
+  view-transition-name: modal-enter;
 }
 .image-modal__image {
   overflow: hidden;
   border-top-right-radius: var(--border-radius-base);
   border-top-left-radius: var(--border-radius-base);
+  text-align: center;
 }
 .image-modal img {
-  width: 100%;
-  max-height: 75vh;
-  object-fit: contain;
+  /* Added as global style in main.css */
 }
 .image-modal__texts {
   padding: 1rem 2rem;

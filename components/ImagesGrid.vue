@@ -15,9 +15,13 @@
           v-for="(image, index) in images"
           :key="index"
           class="images-grid__image"
-          @click="imageModalVisible = image"
+          @click="openImageModal(image, $event.currentTarget)"
         >
-          <img :src="image?.urls?.small" :alt="image?.alt_description" />
+          <img
+            :src="image?.urls?.small"
+            :alt="image?.alt_description"
+            loading="lazy"
+          />
           <div class="images-grid__image__overlay">
             <div class="images-grid__image__overlay__name">
               {{ image?.user?.name || "Unknown Name" }}
@@ -34,7 +38,8 @@
     <ImageModal
       v-if="imageModalVisible"
       :image="imageModalVisible"
-      @close-modal="imageModalVisible = false"
+      :image-el="imageElement"
+      @close-modal="closeImageModal()"
     />
   </div>
 </template>
@@ -47,6 +52,35 @@ const props = defineProps({
   },
 })
 const imageModalVisible = ref(false)
+const imageElement = ref<HTMLElement>()
+const recentButton = ref<HTMLElement>()
+
+const openImageModal = (image: any, buttonElement: HTMLElement) => {
+  recentButton.value = buttonElement
+  const imageEl = buttonElement.querySelector("img")
+  imageEl.style.viewTransitionName = "selected-img"
+  imageElement.value = imageEl
+  if (document.startViewTransition) {
+    document.startViewTransition(() => {
+      imageModalVisible.value = image
+    })
+  } else {
+    imageModalVisible.value = image
+  }
+}
+
+const closeImageModal = async () => {
+  recentButton.value.appendChild(imageElement.value)
+  if (document.startViewTransition) {
+    const animation = await document.startViewTransition(() => {
+      imageModalVisible.value = false
+    })
+    await animation.finished
+    imageElement.value.style.viewTransitionName = "none"
+  } else {
+    imageModalVisible.value = false
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -92,6 +126,8 @@ const imageModalVisible = ref(false)
       justify-content: flex-end;
       align-items: flex-start;
       padding: 0 2rem;
+      z-index: 1;
+      border-radius: var(--border-radius-base);
     }
 
     &__overlay__name {
