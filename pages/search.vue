@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ImagesGrid :images="pending ? [] : images?.results" />
+    <ImagesGrid :images="pending ? [] : images?.results" :loading="pending" />
   </div>
 </template>
 

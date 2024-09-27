@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     {{ images.data }}
-    <ImagesGrid :images="pending ? [] : images" />
+    <ImagesGrid :images="pending ? [] : images" :loading="pending" />
   </div>
 </template>
 

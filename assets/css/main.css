@@ -13,8 +13,10 @@
   --color-text-light: #6f717b;
   --border-radius-base: 0.6rem;
   --transition-base: all 0.3s cubic-bezier(0.7, 0, 0.2, 1) 0ms;
+  --transition-lg: all 1s cubic-bezier(0.7, 0, 0.2, 1) 0ms;
+  --transition-xl: all 1.3s cubic-bezier(0.7, 0, 0.2, 1) 0ms;
   --desktop-max-width: 1200px;
-  --image-grid-column-gap: 3rem;
+  --image-grid-column-gap: 2.6rem;
 }
 
 * {

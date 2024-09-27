@@ -2,15 +2,21 @@
   <div class="images-grid section">
     <div class="images-grid__inner">
       <!-- PLACEHOLDER IMAGES -->
-      <div v-if="images.length === 0" class="images-grid__images">
-        <div v-for="i in 21" :key="i" class="images-grid__placeholder skeleton">
-          <div class="images-grid__placeholder__box"></div>
-          <div class="images-grid__placeholder__box"></div>
+      <Transition name="fade">
+        <div v-if="loading" class="images-grid__images">
+          <div
+            v-for="i in 21"
+            :key="i"
+            class="images-grid__placeholder skeleton"
+          >
+            <div class="images-grid__placeholder__box"></div>
+            <div class="images-grid__placeholder__box"></div>
+          </div>
         </div>
-      </div>
+      </Transition>
 
       <!-- ACTUAL IMAGES -->
-      <div v-else class="images-grid__images">
+      <div v-if="!loading && images.length > 0" class="images-grid__images">
         <button
           v-for="(image, index) in images"
           :key="index"
@@ -18,9 +24,9 @@
           @click="openImageModal(image, $event.currentTarget)"
         >
           <img
+            loading="lazy"
             :src="image?.urls?.small"
             :alt="image?.alt_description"
-            loading="lazy"
           />
           <div class="images-grid__image__overlay">
             <div class="images-grid__image__overlay__name">
@@ -46,6 +52,10 @@
 
 <script setup lang="ts">
 const props = defineProps({
+  loading: {
+    type: Boolean,
+    default: false,
+  },
   images: {
     type: Array,
     default: () => [],
@@ -149,6 +159,7 @@ const closeImageModal = async () => {
       object-fit: cover;
       object-position: center;
       transition: var(--transition-base);
+      min-height: 200px;
     }
 
     &:hover {
@@ -192,6 +203,18 @@ const closeImageModal = async () => {
   .images-grid__inner {
     max-width: 90%;
   }
+  .images-grid__placeholder {
+    width: 200px;
+
+    &__box {
+      width: 80%;
+      height: 15px;
+    }
+
+    &__box:nth-child(2) {
+      width: 50%;
+    }
+  }
   .images-grid__image {
     &__overlay {
       padding: 0 1.5rem;
@@ -210,6 +233,9 @@ const closeImageModal = async () => {
 @media screen and (max-width: 768px) {
   .images-grid__images {
     column-count: 2;
+  }
+  .images-grid__placeholder {
+    width: 260px;
   }
   .images-grid__image {
     &__overlay {
@@ -231,6 +257,10 @@ const closeImageModal = async () => {
 @media screen and (max-width: 500px) {
   .images-grid__images {
     column-count: 1;
+  }
+  .images-grid__placeholder {
+    width: calc(100% - 4rem);
+    padding: 2rem;
   }
 }
 </style>
