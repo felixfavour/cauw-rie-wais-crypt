@@ -5,11 +5,15 @@
         <IconClose />
       </button>
       <div class="image-modal__image">
-        <img :src="image" alt="Image" />
+        <img :src="image?.urls?.regular" :alt="image?.alt_description" />
       </div>
       <div class="image-modal__texts">
-        <div class="image-modal__overlay__name">Roland Olagbaye</div>
-        <div class="image-modal__overlay__location">London, United Kingdom</div>
+        <div class="image-modal__overlay__name">
+          {{ image?.user?.name || "Unknown Name" }}
+        </div>
+        <div class="image-modal__overlay__location">
+          {{ image?.user?.location || "Unknown Location" }}
+        </div>
       </div>
     </div>
   </div>
@@ -18,7 +22,7 @@
 <script setup lang="ts">
 const props = defineProps({
   image: {
-    type: String,
+    type: Object,
     required: true,
   },
 })
@@ -80,10 +84,12 @@ const props = defineProps({
   font-size: 1.25rem;
   line-height: 2.5rem;
   font-weight: 500;
+  text-align: left;
 }
 
 .image-modal__overlay__location {
   font-size: 0.875rem;
   opacity: 0.8;
+  text-align: left;
 }
 </style>
